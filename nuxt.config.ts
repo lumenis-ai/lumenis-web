@@ -13,12 +13,16 @@ export default defineNuxtConfig({
       defaultModel: process.env.AI_OPEN_ROUTER_DEFAULT_MODEL,
     },
   },
+  experimental: {
+    typescriptPlugin: true,
+  },
 
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/mdc',
   ],
   eslint: {
@@ -28,5 +32,11 @@ export default defineNuxtConfig({
   },
   ui: {
     fonts: false,
+    experimental: {
+      componentDetection: true,
+    },
+  },
+  pinia: {
+    storesDirs: ['app/stores/**'],
   },
 })

@@ -5,9 +5,23 @@ export default defineAppConfig({
         base: 'cursor-pointer',
       },
     },
+    checkbox: {
+      variants: {
+        disabled: {
+          false: {
+            base: 'cursor-pointer',
+          },
+        },
+      },
+    },
     selectMenu: {
       slots: {
         base: 'cursor-pointer',
+      },
+    },
+    tabs: {
+      slots: {
+        trigger: 'cursor-pointer',
       },
     },
 

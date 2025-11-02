@@ -4,18 +4,19 @@ import { ChatOpenAI } from '@langchain/openai'
 import { cloneDeep } from 'es-toolkit'
 
 export interface ChatModel {
-  model?: string
   prompt?: string
 }
 
 export interface DefaultChatModel extends ChatModel {
   provider: 'default'
+  model?: string
 }
 
 export interface OpenAIChatModel extends ChatModel {
-  provider: 'openai'
+  provider: 'custom'
+  model: string
   apiKey: string
-  baseURL?: string
+  baseURL: string
 }
 
 export interface AiChatOptions {

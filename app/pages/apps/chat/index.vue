@@ -15,7 +15,7 @@ function onSend() {
 </script>
 
 <template>
-  <UDashboardGroup storage-key="kosm-app-chat-sidebar">
+  <UDashboardGroup storage-key="lumenis-apps-chat-sidebar">
     <UDashboardSidebar
       v-model:collapsed="sidebarCollapsed"
       resizable
@@ -41,7 +41,18 @@ function onSend() {
             <UDashboardSidebarCollapse />
           </template>
           <template #right>
-            <UColorModeButton />
+            <div class="flex items-center gap-2">
+              <UButton
+                icon="i-lucide-brain"
+                color="neutral"
+                size="md"
+                variant="ghost"
+                @click="navigateTo({
+                  name: 'settings-models',
+                })"
+              />
+              <UColorModeButton />
+            </div>
           </template>
         </UDashboardNavbar>
       </template>

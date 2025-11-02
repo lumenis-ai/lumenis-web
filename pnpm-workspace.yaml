@@ -10,3 +10,4 @@ publicHoistPattern:
   - '@nuxt/icon'
   - tailwindcss
   - vue
+  - zod
