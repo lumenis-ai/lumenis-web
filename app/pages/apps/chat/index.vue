@@ -36,14 +36,14 @@ function onSend() {
 
     <UDashboardPanel class="flex flex-col">
       <template #header>
-        <UDashboardNavbar title="Kosm">
+        <UDashboardNavbar title="Lumenis">
           <template v-if="sidebarCollapsed" #leading>
             <UDashboardSidebarCollapse />
           </template>
           <template #right>
             <div class="flex items-center gap-2">
               <UButton
-                icon="i-lucide-brain"
+                icon="i-lucide-settings"
                 color="neutral"
                 size="md"
                 variant="ghost"

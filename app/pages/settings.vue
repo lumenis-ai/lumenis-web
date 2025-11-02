@@ -48,7 +48,18 @@ const menuItems: NavigationMenuItem[][] = [
             <UDashboardSidebarCollapse />
           </template>
           <template #right>
-            <UColorModeButton />
+            <div class="flex items-center gap-2">
+              <UButton
+                icon="i-lucide-boom-box"
+                color="neutral"
+                size="md"
+                variant="ghost"
+                @click="navigateTo({
+                  name: 'apps',
+                })"
+              />
+              <UColorModeButton />
+            </div>
           </template>
         </UDashboardNavbar>
       </template>
