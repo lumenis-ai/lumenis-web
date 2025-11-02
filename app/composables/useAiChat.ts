@@ -85,7 +85,14 @@ export function useAiChat(model: Ref<InternalChatModel | OpenAIChatModel>) {
       status.value = 'ready'
     }
     catch (error) {
+      useToast().add({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'An unknown error occurred',
+        color: 'error',
+      })
+
       console.error(error)
+
       status.value = 'error'
     }
     finally {
