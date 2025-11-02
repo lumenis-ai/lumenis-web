@@ -1,14 +1,13 @@
 import type { AIMessage, AIMessageChunk } from '@langchain/core/messages'
 import { HumanMessage } from '@langchain/core/messages'
 import { ChatOpenAI } from '@langchain/openai'
-import { cloneDeep } from 'es-toolkit'
 
 export interface ChatModel {
   prompt?: string
 }
 
-export interface DefaultChatModel extends ChatModel {
-  provider: 'default'
+export interface InternalChatModel extends ChatModel {
+  provider: 'internal'
   model?: string
 }
 
@@ -20,39 +19,34 @@ export interface OpenAIChatModel extends ChatModel {
 }
 
 export interface AiChatOptions {
-  model?: DefaultChatModel | OpenAIChatModel
+  model?: InternalChatModel | OpenAIChatModel
 }
 
 export type AiChatMessage = HumanMessage | AIMessage
 
-export function useAiChat(options?: AiChatOptions) {
+export function useAiChat(model: Ref<InternalChatModel | OpenAIChatModel>) {
   const config = useRuntimeConfig()
 
-  const chatModel = shallowRef<DefaultChatModel | OpenAIChatModel>(options?.model
-    ? cloneDeep(options.model)
-    : {
-        provider: 'default',
+  const chatModel = computed(() => {
+    if (model.value.provider === 'internal') {
+      return new ChatOpenAI({
+        model: model.value.model || config.public.defaultModel,
+        configuration: {
+          apiKey: '',
+          baseURL: `${location?.origin || 'http://localhost:7000'}/api/ai`,
+        },
       })
-
-  const model = shallowRef<ChatOpenAI>()
-  if (chatModel.value.provider === 'default') {
-    model.value = new ChatOpenAI({
-      model: config.public.defaultModel,
-      configuration: {
-        apiKey: '',
-        baseURL: `${location?.origin || 'http://localhost:7000'}/api/ai`,
-      },
-    })
-  }
-  else {
-    model.value = new ChatOpenAI({
-      model: chatModel.value.model,
-      apiKey: chatModel.value.apiKey,
-      configuration: {
-        baseURL: chatModel.value.baseURL,
-      },
-    })
-  }
+    }
+    else {
+      return new ChatOpenAI({
+        model: model.value.model,
+        apiKey: model.value.apiKey,
+        configuration: {
+          baseURL: model.value.baseURL,
+        },
+      })
+    }
+  })
 
   const messages = shallowReactive<Array<AiChatMessage>>([])
 
@@ -73,7 +67,7 @@ export function useAiChat(options?: AiChatOptions) {
     abortController.value = new AbortController()
 
     try {
-      for await (const chunk of await model.value!.stream(messages, {
+      for await (const chunk of await chatModel.value.stream(messages, {
         signal: abortController.value!.signal,
       })) {
         status.value = 'streaming'

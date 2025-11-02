@@ -35,7 +35,7 @@ const content = computed(() => {
     </template>
     <template v-else>
       <div class="flex items-center">
-        <MDC class="*:first:mt-0 *:last:mb-0" :value="content" />
+        <MDC class="*:first:mt-0 *:last:mb-0" :value="content" :cache-key="message.id" />
       </div>
     </template>
     <div class="h-7">

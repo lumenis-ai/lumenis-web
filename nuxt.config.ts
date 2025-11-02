@@ -13,9 +13,6 @@ export default defineNuxtConfig({
       defaultModel: process.env.AI_OPEN_ROUTER_DEFAULT_MODEL,
     },
   },
-  experimental: {
-    typescriptPlugin: true,
-  },
 
   modules: [
     '@nuxt/eslint',
