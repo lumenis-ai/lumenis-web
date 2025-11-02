@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
   redirect: {
-    name: 'app',
+    name: 'apps',
   },
 })
 </script>
