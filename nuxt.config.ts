@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/mdc',
+    '@nuxtjs/supabase',
   ],
   eslint: {
     config: {
@@ -35,5 +36,9 @@ export default defineNuxtConfig({
   },
   pinia: {
     storesDirs: ['app/stores/**'],
+  },
+  supabase: {
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
 })

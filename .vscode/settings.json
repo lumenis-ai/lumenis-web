@@ -27,6 +27,7 @@
     "primeui",
     "primevue",
     "Shiki",
+    "supabase",
     "vnode",
     "vueuse"
   ],

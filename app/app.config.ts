@@ -17,6 +17,11 @@ export default defineAppConfig({
         },
       },
     },
+    dropdownMenu: {
+      slots: {
+        item: 'cursor-pointer',
+      },
+    },
     selectMenu: {
       slots: {
         base: 'cursor-pointer',

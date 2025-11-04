@@ -53,6 +53,7 @@ function onSend() {
                 })"
               />
               <UColorModeButton />
+              <ProfileAvatar />
             </div>
           </template>
         </UDashboardNavbar>
