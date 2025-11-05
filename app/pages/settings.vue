@@ -59,6 +59,7 @@ const menuItems: NavigationMenuItem[][] = [
                 })"
               />
               <UColorModeButton />
+              <ProfileAvatar />
             </div>
           </template>
         </UDashboardNavbar>
