@@ -37,6 +37,10 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['app/stores/**'],
   },
+  piniaPluginPersistedstate: {
+    storage: 'localStorage',
+    key: 'lumenis-ai_%id',
+  },
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL,
     key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
