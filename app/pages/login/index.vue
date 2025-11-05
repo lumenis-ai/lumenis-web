@@ -1,16 +1,6 @@
 <script setup lang="ts">
 import type { AuthFormField, ButtonProps } from '@nuxt/ui'
 
-const user = useSupabaseUser()
-const redirectInfo = useSupabaseCookieRedirect()
-watchEffect(() => {
-  if (user.value) {
-    const path = redirectInfo.pluck()
-
-    navigateTo(path || '/')
-  }
-})
-
 const auth = useSupabaseClient()
 
 const fields: AuthFormField[] = [{
@@ -38,6 +28,9 @@ const providers: ButtonProps[] = [
     onClick: () => {
       auth.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+          redirectTo: `${window?.location?.origin}/login/callback`,
+        },
       })
     },
   },
@@ -47,6 +40,9 @@ const providers: ButtonProps[] = [
     onClick: async () => {
       auth.auth.signInWithOAuth({
         provider: 'github',
+        options: {
+          redirectTo: `${window?.location?.origin}/login/callback`,
+        },
       })
     },
   },
