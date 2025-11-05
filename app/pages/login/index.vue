@@ -1,25 +1,7 @@
 <script setup lang="ts">
-import type { AuthFormField, ButtonProps } from '@nuxt/ui'
+import type { ButtonProps } from '@nuxt/ui'
 
 const auth = useSupabaseClient()
-
-const fields: AuthFormField[] = [{
-  name: 'email',
-  type: 'email',
-  label: 'Email',
-  placeholder: 'Enter your email',
-  required: true,
-}, {
-  name: 'password',
-  label: 'Password',
-  type: 'password',
-  placeholder: 'Enter your password',
-  required: true,
-}, {
-  name: 'remember',
-  label: 'Remember me',
-  type: 'checkbox',
-}]
 
 const providers: ButtonProps[] = [
   {
@@ -56,7 +38,7 @@ const providers: ButtonProps[] = [
       spotlight
       spotlight-color="primary"
     >
-      <UAuthForm title="Login" description="Enter your credentials to access your account." :fields="fields" :providers="providers" />
+      <UAuthForm title="Lumenis AI" description="Log in using your usual account." :providers="providers" />
     </UPageCard>
   </div>
 </template>
