@@ -1,5 +1,8 @@
 <template>
-  <UApp :tooltip="{ delayDuration: 300 }">
+  <UApp
+    :toaster="{ position: 'top-center' }"
+    :tooltip="{ delayDuration: 300 }"
+  >
     <div class="h-screen w-screen">
       <NuxtPage />
     </div>
