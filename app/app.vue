@@ -1,4 +1,9 @@
+<script setup lang="ts">
+import { Analytics } from '@vercel/analytics/nuxt'
+</script>
+
 <template>
+  <Analytics />
   <UApp
     :toaster="{ position: 'top-center' }"
     :tooltip="{ delayDuration: 300 }"
