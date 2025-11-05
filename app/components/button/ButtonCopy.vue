@@ -7,6 +7,10 @@ const { copy, copied } = useClipboard({
   source: props.content,
   legacy: true,
 })
+
+defineExpose({
+  copied,
+})
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AIMessage, ContentBlock, HumanMessage } from '@langchain/core/messages'
+import { ButtonCopy } from '#components'
 
 const props = withDefaults(defineProps<{
   message: HumanMessage | AIMessage
@@ -11,8 +12,9 @@ const props = withDefaults(defineProps<{
 const messageRef = useTemplateRef<HTMLDivElement>('messageRef')
 const isHovered = useElementHover(messageRef)
 
+const buttonCopyRef = useTemplateRef<InstanceType<typeof ButtonCopy>>('buttonCopyRef')
 const showActionsComputed = computed(() => {
-  return props.showActions || isHovered.value
+  return props.showActions || isHovered.value || !!buttonCopyRef.value?.copied
 })
 
 const content = computed(() => {
@@ -40,7 +42,7 @@ const content = computed(() => {
     </template>
     <div class="h-7">
       <div v-if="showActionsComputed" class="flex items-center gap-2" :class="{ 'justify-end': message.type === 'human' }">
-        <ButtonCopy :content="content" />
+        <ButtonCopy ref="buttonCopyRef" :content="content" />
       </div>
     </div>
   </div>
