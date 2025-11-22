@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Field,
-  FieldDescription,
   FieldGroup,
 } from "@/components/ui/field"
 import { createClient } from "@/utils/supabase/client"
